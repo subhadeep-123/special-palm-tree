@@ -1,0 +1,19 @@
+version: "3"
+services:
+  python:
+    build: 
+      context: ./python
+      dockerfile: Dockerfile
+    container_name: web
+    # network_mode: "host"
+    ports:
+      - "5000:5000"
+  db:
+    build: ./db
+    volumes: 
+      - ./mongo-data:/data/db
+    ports:
+      - "27017:27017"
+    # network_mode: "host"
+volumes: 
+  mongo-data:
